@@ -1,0 +1,33 @@
+.test{
+    color: red;
+}
+.title-con{
+    padding-top: 20px;
+}
+.title{
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    pointer-events: none;
+}
+#main-title{
+    font-size: 120px;
+}
+.login-con{
+    width: 360px;
+    height: 300px;
+    padding: 20px;
+    background-color: white;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, .4);
+    box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, .5);
+}
+.btn-con{
+    display:flex;
+    display:-webkit-flex;
+    /*水平排布*/
+    justify-content:space-between;
+            
+}
