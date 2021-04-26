@@ -28,6 +28,7 @@
 </template>
 
 <script>
+  import {post} from '@/utils/request.js'
 export default {
   name: 'App',
   data() {
@@ -61,10 +62,13 @@ export default {
   },
   methods: {
     regist: function(){
+      //注册
       let that = this
-      if(that.ruleForm.username.length && that.ruleForm.password.length && that.ruleForm.checkPassword.length && that.ruleForm.nickname.length){
+      if(that.ruleForm.username.length && that.ruleForm.password.length 
+      && that.ruleForm.checkPassword.length && that.ruleForm.nickname.length
+      && that.ruleForm.idNumber.length){
         if(that.ruleForm.password == that.ruleForm.checkPassword){
-          console.log(that.ruleForm.username+" "+that.ruleForm.password+" "+that.ruleForm.checkPassword)
+          
           //发送注册请求
 
           let msg = {
@@ -73,22 +77,25 @@ export default {
             nickname:that.ruleForm.nickname,
             idNumber:that.ruleForm.idNumber
           };
-          that.$axios({
-            method: 'post',
-            url:'/api/user/webregist',
-            data:msg
-          })
-          .then(function(res){
+          //请求注册
+          let res = post('/api/user/webregist',msg).then(function(res){
             console.log(res)
-          })
-          //跳转
-          this.$router.push('/regist/successful')
+            if(res.data.status == 1){
+              //注册失败
+              that.$message.error(res.data.message);
+            }else{
+              //注册成功
+              that.$router.push('/regist/successful')
+            }
+          });
+          
+          
         }else{
-          alert('密码与确认密码不相符')
+          that.$message.warning('密码与确认密码不相符')
         }
         // this.$router.push('/')
       }else{
-        alert('请完善信息')
+        that.$message.warning('请完善信息')
       }
     },
   },

@@ -1,6 +1,7 @@
 <template>
   <div class="page-con">
       注册成功
+      <el-button type="primary" @click="goToMain()">返回首页</el-button>
   </div>
 
 </template>
@@ -15,7 +16,9 @@ export default {
 
   },
   methods: {
-    
+    goToMain: function(){
+      this.$router.push('/');
+    }
   },
   
 }
