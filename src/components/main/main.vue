@@ -17,7 +17,7 @@ export default {
 
   },
   mounted() {
-    console.log(this.active)
+    // console.log(this.active)
     // this.$router.push(this.active)
   },
   methods: {
@@ -29,7 +29,7 @@ export default {
   },
   watch: {
     active (newVal){
-      console.log(this.active)
+      
       this.$router.push({
         path: this.active
       })

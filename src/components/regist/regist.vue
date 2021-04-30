@@ -30,7 +30,7 @@
 <script>
   import {post} from '@/utils/request.js'
 export default {
-  name: 'App',
+  name: 'Deploy',
   data() {
     return{
       ruleForm: {
@@ -78,7 +78,7 @@ export default {
             idNumber:that.ruleForm.idNumber
           };
           //请求注册
-          let res = post('/api/user/webregist',msg).then(function(res){
+          post('/api/user/webregist',msg).then(function(res){
             console.log(res)
             if(res.data.status == 1){
               //注册失败

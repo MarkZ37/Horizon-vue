@@ -18,22 +18,102 @@
           </div>
         </div>
       </div>
+      
+      
+      <div class="deploy-con">
+        <el-upload
+        class="avatar-uploader quill-img"
+        :action="uploadImgUrl"
+        name="file"
+        :headers="myHeaders"
+        :show-file-list="false"
+        :on-success="quillImgSuccess"
+        :on-error="uploadError"
+        :before-upload="quillImgBefore"
+        accept='.jpg,.jpeg,.png,.gif'>
+        </el-upload>
+        <quill-editor v-model="content"
+          ref="quillEditor"
+          :options="editorOption"
+          @blur="handleEditorBlur($event)"
+          @focus="handleEditorFocus($event)"
+          @change="handleEditorChange($event)"
+          style="height: 800px;">
+        </quill-editor>
+        
+      </div>
   </div>
 
 </template>
 
 <script>
-  import $ from 'jquery'
+  import $ from 'jquery';
+  import store from "@/store";
+  var token = store.state.token.token;
+  const toolbarOptions = [
+  ["bold", "italic", "underline", "strike"],       // 加粗 斜体 下划线 删除线
+  ["blockquote", "code-block"],                    // 引用  代码块
+  [{ list: "ordered" }, { list: "bullet" }],       // 有序、无序列表
+  [{ indent: "-1" }, { indent: "+1" }],            // 缩进
+  [{ size: ["small", false, "large", "huge"] }],   // 字体大小
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],         // 标题
+  [{ color: [] }, { background: [] }],             // 字体颜色、字体背景颜色
+  [{ align: [] }],                                 // 对齐方式
+  ["clean"],                                       // 清除文本格式
+  ["link", "image", "video"]                       // 链接、图片、视频
+];
 export default {
   name: 'My',
+  props: {
+    /* 编辑器的内容 */
+    value: {
+      type: String
+    },
+    /* 图片大小 */
+    maxSize: {
+      type: Number,
+      default: 4000 //kb
+    },
+  },
   data() {
     return{
       nickName: '弛哥弛哥弛哥弛',
       emo: '此时心情',
       emoList: ["心情1","心情2","心情3","心情4","心情5","心情6","心情7","心情8","心情9","心情10",
-      "心情1","心情2","心情3","心情4","心情5","心情6","心情7","心情8","心情9","心情10","心情11"]
+      "心情1","心情2","心情3","心情4","心情5","心情6","心情7","心情8","心情9","心情10","心情11"],
+      content: this.value,
+      uploadImgUrl: "",
+      editorOption: {
+        placeholder: "",
+        theme: "snow", // or 'bubble'
+        placeholder: "请输入内容",
+        modules: {
+          toolbar: {
+            container: toolbarOptions,
+            handlers: {
+              image: function(value) {
+                if (value) {
+                  
+                  // 触发input框选择图片文件
+                  document.querySelector(".quill-img input").click();
+                } else {
+                  this.quill.format("image", false);
+                }
+              }
+            }
+          }
+        
+        }
+      },
+      uploadImgUrl: "http://localhost:8080/tool/oss/homeImageUpload", // 上传的图片服务器地址
+      myHeaders: {Authorization: token}
     }
 
+  },
+  watch: {
+    value: function() {
+      this.content = this.value;
+    }
   },
   methods: {
     //加载数据
@@ -60,6 +140,53 @@ export default {
     chooseEmo:function(index){
       localStorage.setItem("emosIndex",index)
       console.log(index)
+    },
+    showDeploy:function(){
+      
+    },
+    handleEditorBlur:function(e){
+      console.log(e)
+    },
+    handleEditorFocus:function(e){
+      console.log(e)
+    },
+    handleEditorChange:function(e){
+      console.log(e)
+    },
+    // 富文本图片上传前
+    quillImgBefore(file) {
+      let fileType = file.type;
+   if(fileType === 'image/jpeg' || fileType === 'image/png'){
+    return true;
+   }else {
+    this.$message.error('请插入图片类型文件(jpg/jpeg/png)');
+    return false;
+   }
+    },
+
+    quillImgSuccess(res, file) {
+      // res为图片服务器返回的数据
+      // 获取富文本组件实例
+      let quill = this.$refs.quillEditor.quill;
+      // 如果上传成功
+      console.log(res)
+      
+      if (res.errorCode == 0) {
+        // 获取光标所在位置
+        let length = quill.getSelection().index;
+        // 插入图片  res.data为服务器返回的图片地址
+        quill.insertEmbed(length, "image", res.data);
+        // 调整光标到最后
+        quill.setSelection(length + 1);
+      } else {
+        this.$message.error("图片插入失败");
+      }
+      
+    },
+    // 富文本图片上传失败
+    uploadError() {
+      // loading动画消失
+      this.$message.error("图片插入失败");
     }
   },
   

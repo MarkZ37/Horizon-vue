@@ -1,22 +1,23 @@
 // request.js
 import axios from "axios";
-import qs from "qs";
 
+import store from "@/store";
+
+// 添加请求拦截器
+axios.interceptors.request.use(config => {
+    // 在发送请求之前做些什么
+    //判断是否存在token，如果存在将每个页面header都添加token
+      if(store.state.token){
+        config.headers.Authorization=store.state.token.token
+      }
+      return config;
+    }, error => {
+    // 对请求错误做些什么
+      return Promise.reject(error);
+    });
 //定义方法
 export function post(url, params){
-    // let result;
-    // axios({
-    //     method: 'post',
-    //     url:url,
-    //     data:params
-    //   })
-    //   .then(function(res){
-    //     console.log("请求成功")
-    //     result = res;
-    //   })
-    //   return result;
-    // const basePath=process.env.NODE_ENV=="development" ? "/api" : "/api";
-    // console.log(basePath)
+    
     return axios.post(url, params); //如果不需要转json的话，那么第二次参数就是params
 }
 export function get(url,params){

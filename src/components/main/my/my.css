@@ -23,6 +23,8 @@
     position: relative;
 }
 .emos-con{
+    z-index: 999;
+    background-color: white;
     width: 100%;
     position: absolute;
     /* height: 200px; */
@@ -42,6 +44,7 @@ li{
     list-style-type: none;
 }
 .emos-list{
+    
     display: flex;
     
     flex-wrap: wrap;
@@ -59,4 +62,24 @@ li{
     width: 80px;
     border-radius: 3px;
     border: 1px solid #409eff;
+}
+
+.show-deploy-button{
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    border-radius: 100px;
+    border: none;
+    background-color: pink;
+    text-align: center;
+    color: white;
+}
+.deploy-con{
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    
 }

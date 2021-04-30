@@ -25,6 +25,8 @@
 </template>
 
 <script>
+  import {post} from '@/utils/request.js';
+  import store from '@/store';
 export default {
   name: 'Index',
   data() {
@@ -54,15 +56,27 @@ export default {
   methods: {
     
     login: function(){
+      let that = this;
       if(this.ruleForm.username.length && this.ruleForm.password.length){
-        console.log(this.ruleForm.username+" "+this.ruleForm.password)
-        this.$router.replace('/main/square')
+        
+        let msg = {
+          account:this.ruleForm.username,
+          password:this.ruleForm.password
+        }
+        post('/api/user/weblogin',msg).then(function(res){
+          console.log(res)
+          if(res.data.status == 0){
+            that.$store.commit("setToken",res.data.data.token)
+            that.$router.push('/main/square')
+          }
+        })
       }else{
         alert('请完善信息')
       }
     },
     goRegist: function(){
-      this.$router.push('/regist')
+      // this.$router.push('/regist')
+      console.log(store.state.token)
     }
     
   },

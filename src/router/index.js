@@ -9,6 +9,7 @@ import RegistSuccessful from '@/components/regist/successful.vue';
 import Square from '@/components/main/square/square.vue';
 import Follow from '@/components/main/follow/follow.vue';
 import My from '@/components/main/my/my.vue';
+
 Vue.use(Router)
 
 export default new Router({

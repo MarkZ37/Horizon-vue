@@ -1,7 +1,8 @@
 <template>
   <div>
-      广场
-      <div style="width: 500px;height: 500px;background-color: blue;"></div>
+      <div class="aticle-con">
+        
+      </div>
   </div>
 
 </template>
@@ -23,6 +24,6 @@ export default {
 </script>
 
 <style>
-  
+  @import url("square.css");
   
 </style>
