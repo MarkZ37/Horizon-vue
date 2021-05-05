@@ -78,7 +78,7 @@ export default {
             idNumber:that.ruleForm.idNumber
           };
           //请求注册
-          post('/api/user/webregist',msg).then(function(res){
+          post(that.urlUtil.regist,msg).then(function(res){
             console.log(res)
             if(res.data.status == 1){
               //注册失败

@@ -6,13 +6,14 @@
     background-color: red;
     padding-top: 10px;
 }
-.avatar{
+.avatar-con{
     width: 80px;
     height: 80px;
     background-color: royalblue;
     border-radius: 100px;
     margin: 0px auto;
 }
+
 .nickName{
     text-align: center;
     color: white;
@@ -78,8 +79,25 @@ li{
     color: white;
 }
 .deploy-con{
+    display: none;
     position: fixed;
     z-index: 99;
     width: 100%;
     
+    top: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    
+}
+.quill-editor{
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+}
+.deploy-btn-con{
+    margin: 0 auto;
+    margin-top: 60px;
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }

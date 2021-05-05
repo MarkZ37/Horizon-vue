@@ -2,13 +2,16 @@
 import axios from "axios";
 
 import store from "@/store";
-
+import urlUtil from "./urlutil"
+axios.defaults.baseURL=urlUtil.baseUrl
 // 添加请求拦截器
 axios.interceptors.request.use(config => {
     // 在发送请求之前做些什么
     //判断是否存在token，如果存在将每个页面header都添加token
+    console.log(store.state.token)
       if(store.state.token){
-        config.headers.Authorization=store.state.token.token
+        config.headers.Authorization=store.state.token;
+        
       }
       return config;
     }, error => {

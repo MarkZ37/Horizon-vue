@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="about-con">
-          <div class="avatar"></div>
+          <div class="avatar-con" @click="changeAvatar()"></div>
           <div class="nickName">{{nickName}}</div>
       </div>
       <div class="emo-con">
@@ -19,8 +19,9 @@
         </div>
       </div>
       
-      
+      <!-- 富文本编辑器 -->
       <div class="deploy-con">
+        <el-input v-model="articleTitle" placeholder="标题" :change="titleChange()"></el-input>
         <el-upload
         class="avatar-uploader quill-img"
         :action="uploadImgUrl"
@@ -38,18 +39,24 @@
           @blur="handleEditorBlur($event)"
           @focus="handleEditorFocus($event)"
           @change="handleEditorChange($event)"
-          style="height: 800px;">
+          >
         </quill-editor>
-        
+        <div class="deploy-btn-con">
+          <el-button type="primary" @click="deployArticle()">发表</el-button>
+          <el-button type="danger" @click="cancelDeploy()">取消</el-button>
+        </div>
       </div>
+
+      <button class="show-deploy-button" @click="showDeploy()">写文章</button>
+      
   </div>
 
 </template>
 
 <script>
   import $ from 'jquery';
-  import store from "@/store";
-  var token = store.state.token.token;
+  // import store from "@/store";
+  
   const toolbarOptions = [
   ["bold", "italic", "underline", "strike"],       // 加粗 斜体 下划线 删除线
   ["blockquote", "code-block"],                    // 引用  代码块
@@ -77,11 +84,16 @@ export default {
   },
   data() {
     return{
-      nickName: '弛哥弛哥弛哥弛',
+      nickName: JSON.parse(this.$store.state.userInfo).nickName,
+      avatarUrl:JSON.parse(this.$store.state.userInfo).avatarUrl,
       emo: '此时心情',
       emoList: ["心情1","心情2","心情3","心情4","心情5","心情6","心情7","心情8","心情9","心情10",
       "心情1","心情2","心情3","心情4","心情5","心情6","心情7","心情8","心情9","心情10","心情11"],
       content: this.value,
+
+      articleHtml:'',
+      articleTitle:'',
+      
       uploadImgUrl: "",
       editorOption: {
         placeholder: "",
@@ -96,6 +108,7 @@ export default {
                   
                   // 触发input框选择图片文件
                   document.querySelector(".quill-img input").click();
+                  
                 } else {
                   this.quill.format("image", false);
                 }
@@ -105,8 +118,8 @@ export default {
         
         }
       },
-      uploadImgUrl: "http://localhost:8080/tool/oss/homeImageUpload", // 上传的图片服务器地址
-      myHeaders: {Authorization: token}
+      uploadImgUrl: this.urlUtil.baseUrl + this.urlUtil.imgOSSUpload, // 上传的图片服务器地址
+      myHeaders: {'Authorization': 'Bearer:' + localStorage.getItem('token')}
     }
 
   },
@@ -114,6 +127,10 @@ export default {
     value: function() {
       this.content = this.value;
     }
+  },
+  mounted() {
+
+    this.loadData();
   },
   methods: {
     //加载数据
@@ -141,8 +158,17 @@ export default {
       localStorage.setItem("emosIndex",index)
       console.log(index)
     },
+    /**********************上传头像*********************/
+    changeAvatar:function(){
+      $('.avatar-uploader input').click()
+      // document.querySelector(".quill-img input").click();
+    },
+    /**********************文章************************/
+    titleChange:function(){
+      console.log(this.articleTitle)
+    },
     showDeploy:function(){
-      
+      $('.deploy-con').slideDown(200)
     },
     handleEditorBlur:function(e){
       console.log(e)
@@ -151,7 +177,8 @@ export default {
       console.log(e)
     },
     handleEditorChange:function(e){
-      console.log(e)
+      console.log(e.html)
+      this.articleHtml = e.html
     },
     // 富文本图片上传前
     quillImgBefore(file) {
@@ -187,6 +214,19 @@ export default {
     uploadError() {
       // loading动画消失
       this.$message.error("图片插入失败");
+    },
+    //上传文章
+    deployArticle:function(){
+      if(this.articleTitle && this.articleHtml){
+        console.log(this.articleTitle+" "+this.articleHtml);
+        let data = {
+          
+        }
+      }
+    },
+    //取消上传，关闭deploy
+    cancelDeploy:function(){
+      $('.deploy-con').slideUp(200);
     }
   },
   

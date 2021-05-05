@@ -26,7 +26,7 @@
 
 <script>
   import {post} from '@/utils/request.js';
-  import store from '@/store';
+  
 export default {
   name: 'Index',
   data() {
@@ -63,11 +63,16 @@ export default {
           account:this.ruleForm.username,
           password:this.ruleForm.password
         }
-        post('/api/user/weblogin',msg).then(function(res){
+        post(that.urlUtil.login,msg).then(function(res){
           console.log(res)
           if(res.data.status == 0){
             that.$store.commit("setToken",res.data.data.token)
+            that.$store.commit("setUserInfo",JSON.stringify(res.data.data.userInfo))
+            
+            
             that.$router.push('/main/square')
+          }else{
+            that.$message.error(res.data.message);
           }
         })
       }else{
@@ -75,8 +80,7 @@ export default {
       }
     },
     goRegist: function(){
-      // this.$router.push('/regist')
-      console.log(store.state.token)
+      this.$router.push('/regist')
     }
     
   },

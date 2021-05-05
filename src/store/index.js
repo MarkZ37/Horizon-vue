@@ -4,19 +4,42 @@ Vue.use(Vuex)
 const  store=new  Vuex.Store({
   state:{
     //赋值
-    token:localStorage.getItem('token') ? localStorage.getItem('token'):''
+    token:localStorage.getItem('token') ? localStorage.getItem('token'):'',
+    userInfo:localStorage.getItem('userInfo') ? localStorage.getItem('userInfo'):''
+    // userInfo:{
+    //   userName:'',
+    //   nickName:'',
+    //   avatarUrl:'',
+    //   sign:'',
+    // }
   },
   mutations:{
     setToken(state,token){
       state.token=token;
-    //   这段代码token.token , 是因为在login.vue中调用这个方法传进来的是一个对象
-    // （即使你觉的你传进来的是一个字符串，不知道为什么会被放到object里去），
-    //   传进来的对象里有token这个属性
-      localStorage.setItem("token",token.token);
+    
+      localStorage.setItem('token',token);
     } ,
     delToken(state){
       state.token='';
-      localStorage.removeItem("token");
+      localStorage.removeItem('token');
+    },
+    setUserInfo(state,userInfo){
+
+      
+
+      state.userInfo = userInfo
+
+      // state.userInfo.userName = userInfoObj.userName;
+      // state.userInfo.avatarUrl = userInfoObj.avatarUrl;
+      // state.userInfo.nickName = userInfoObj.nickName;
+      // state.userInfo.sign = userInfoObj.sign;
+
+      localStorage.setItem('userInfo',userInfo)
+    }
+  },
+  getters:{
+    getUserInfo(state){
+
     }
   }
 })
