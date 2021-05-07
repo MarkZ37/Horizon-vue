@@ -9,7 +9,7 @@
 .avatar-con{
     width: 80px;
     height: 80px;
-    background-color: royalblue;
+    background-size: 100% 100%;
     border-radius: 100px;
     margin: 0px auto;
 }

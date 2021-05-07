@@ -3,6 +3,7 @@ const rootApi = '/api';
 const login = rootApi + '/user/weblogin';
 const regist = rootApi + '/user/webregist';
 const getUserInfo = rootApi + '/user/webgetuserinfo';
+const uploadAvatarUrl = rootApi + '/user/uploadavatarurl';
 const imgOSSUpload = '/tool/oss/homeImageUpload';
 
 export default{
@@ -10,5 +11,6 @@ export default{
     login,
     regist,
     getUserInfo,
+    uploadAvatarUrl,
     imgOSSUpload
 }

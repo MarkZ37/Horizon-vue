@@ -156,7 +156,9 @@ export default {
     this.loadUserData();
   },
   methods: {
-    //加载用户个人信息
+    /******************加载信息***************/
+
+    //加载个人信息
     loadUserData:function(){
       let that = this;
       console.log(that.userInfo.userName);
@@ -170,8 +172,12 @@ export default {
           console.log('userName:' + that.userInfo.userName + '  nickName:' + that.userInfo.nickName
             + '  sign:' + that.userInfo.sign + '  avatarUrl:'+ that.userInfo.avatarUrl);
           that.nickName = that.userInfo.nickName
+          that.setAvatar(that.userInfo.avatarUrl);
         }
       })
+    },
+    setAvatar:function(avatarUrl){
+      $('.avatar-con').css("background-image", "url("+avatarUrl+")")
     },
     //加载用户文章
     loadUserArticles:function(){
@@ -212,11 +218,18 @@ export default {
       }
     },
     uploadAvatarUrl(avatarUrl){
+      let that = this;
       let msg = {
         avatarUrl:avatarUrl,
         userName:this.userInfo.userName
       };
-      post()
+      post(that.urlUtil.uploadAvatarUrl,msg).then(function(res){
+        console.log(res)
+        if(res.data.status == 0){
+          //成功上传头像，获取更新后的userInfo
+          that.loadUserData();
+        }
+      });
     },
     /**********************文章************************/
     titleChange:function(){
