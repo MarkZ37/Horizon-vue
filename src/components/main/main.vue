@@ -16,9 +16,12 @@ export default {
     }
 
   },
+  // computed: {
+  
+
+  // },
   mounted() {
-    // console.log(this.active)
-    // this.$router.push(this.active)
+    
   },
   methods: {
 

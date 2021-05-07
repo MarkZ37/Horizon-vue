@@ -1,46 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+
+import userInfo from './moudles/userInfo'
+import token from './moudles/token'
+
+import getters from './getters'
 Vue.use(Vuex)
 const  store=new  Vuex.Store({
-  state:{
-    //赋值
-    token:localStorage.getItem('token') ? localStorage.getItem('token'):'',
-    userInfo:localStorage.getItem('userInfo') ? localStorage.getItem('userInfo'):''
-    // userInfo:{
-    //   userName:'',
-    //   nickName:'',
-    //   avatarUrl:'',
-    //   sign:'',
-    // }
-  },
-  mutations:{
-    setToken(state,token){
-      state.token=token;
+  
+
+  modules:{
+    userInfo:userInfo,
     
-      localStorage.setItem('token',token);
-    } ,
-    delToken(state){
-      state.token='';
-      localStorage.removeItem('token');
-    },
-    setUserInfo(state,userInfo){
-
-      
-
-      state.userInfo = userInfo
-
-      // state.userInfo.userName = userInfoObj.userName;
-      // state.userInfo.avatarUrl = userInfoObj.avatarUrl;
-      // state.userInfo.nickName = userInfoObj.nickName;
-      // state.userInfo.sign = userInfoObj.sign;
-
-      localStorage.setItem('userInfo',userInfo)
-    }
+    token: token,
   },
-  getters:{
-    getUserInfo(state){
-
-    }
-  }
+  getters:getters
 })
 export default store;

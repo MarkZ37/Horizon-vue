@@ -66,8 +66,9 @@ export default {
         post(that.urlUtil.login,msg).then(function(res){
           console.log(res)
           if(res.data.status == 0){
+            //登陆成功
             that.$store.commit("setToken",res.data.data.token)
-            that.$store.commit("setUserInfo",JSON.stringify(res.data.data.userInfo))
+            that.$store.commit("setUserInfo",res.data.data.userInfo)
             
             
             that.$router.push('/main/square')

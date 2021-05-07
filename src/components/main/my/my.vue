@@ -2,6 +2,17 @@
   <div>
       <div class="about-con">
           <div class="avatar-con" @click="changeAvatar()"></div>
+          <el-upload
+            class="avatar-uploader"
+            :action="uploadImgUrl"
+            name="file"
+            :headers="myHeaders"
+            :show-file-list="false"
+            :on-success="avatarUploadSuccess"
+            :on-error="uploadError"
+            :before-upload="uploadImgBefore"
+            accept='.jpg,.jpeg,.png,.gif'>
+          </el-upload>
           <div class="nickName">{{nickName}}</div>
       </div>
       <div class="emo-con">
@@ -23,14 +34,14 @@
       <div class="deploy-con">
         <el-input v-model="articleTitle" placeholder="标题" :change="titleChange()"></el-input>
         <el-upload
-        class="avatar-uploader quill-img"
+        class="quill-img"
         :action="uploadImgUrl"
         name="file"
         :headers="myHeaders"
         :show-file-list="false"
         :on-success="quillImgSuccess"
         :on-error="uploadError"
-        :before-upload="quillImgBefore"
+        :before-upload="uploadImgBefore"
         accept='.jpg,.jpeg,.png,.gif'>
         </el-upload>
         <quill-editor v-model="content"
@@ -56,7 +67,9 @@
 <script>
   import $ from 'jquery';
   // import store from "@/store";
-  
+  import {mapGetters} from 'vuex';
+  import {post} from '@/utils/request.js';
+
   const toolbarOptions = [
   ["bold", "italic", "underline", "strike"],       // 加粗 斜体 下划线 删除线
   ["blockquote", "code-block"],                    // 引用  代码块
@@ -69,6 +82,7 @@
   ["clean"],                                       // 清除文本格式
   ["link", "image", "video"]                       // 链接、图片、视频
 ];
+
 export default {
   name: 'My',
   props: {
@@ -84,8 +98,7 @@ export default {
   },
   data() {
     return{
-      nickName: JSON.parse(this.$store.state.userInfo).nickName,
-      avatarUrl:JSON.parse(this.$store.state.userInfo).avatarUrl,
+      nickName:'',
       emo: '此时心情',
       emoList: ["心情1","心情2","心情3","心情4","心情5","心情6","心情7","心情8","心情9","心情10",
       "心情1","心情2","心情3","心情4","心情5","心情6","心情7","心情8","心情9","心情10","心情11"],
@@ -119,7 +132,7 @@ export default {
         }
       },
       uploadImgUrl: this.urlUtil.baseUrl + this.urlUtil.imgOSSUpload, // 上传的图片服务器地址
-      myHeaders: {'Authorization': 'Bearer:' + localStorage.getItem('token')}
+      myHeaders: {}
     }
 
   },
@@ -128,16 +141,41 @@ export default {
       this.content = this.value;
     }
   },
+  computed:{
+    ...mapGetters(['userInfo','token'])
+  },
   mounted() {
-
-    this.loadData();
+    //设置上传图片的头部token
+    this.myHeaders = {'Authorization': 'Bearer:' + this.token.token}
+    
+    console.log('load userinfo...')
+    this.loadUserData();
+  },
+  onbeforeunload() {
+    console.log('refresh userinfo...')
+    this.loadUserData();
   },
   methods: {
-    //加载数据
-    loadData:function(){
-      //获取用户信息
-      //获取心情列表
-      //设置数据
+    //加载用户个人信息
+    loadUserData:function(){
+      let that = this;
+      console.log(that.userInfo.userName);
+      let msg = {
+        userName: that.userInfo.userName
+      }
+      post(that.urlUtil.getUserInfo,msg).then(function(res){
+        console.log(res)
+        if(res.data.status == 0){
+          that.$store.commit("setUserInfo",res.data.data);
+          console.log('userName:' + that.userInfo.userName + '  nickName:' + that.userInfo.nickName
+            + '  sign:' + that.userInfo.sign + '  avatarUrl:'+ that.userInfo.avatarUrl);
+          that.nickName = that.userInfo.nickName
+        }
+      })
+    },
+    //加载用户文章
+    loadUserArticles:function(){
+      
     },
     changeEmo:function(){
       $('.emos-con').slideDown(200);
@@ -161,7 +199,24 @@ export default {
     /**********************上传头像*********************/
     changeAvatar:function(){
       $('.avatar-uploader input').click()
-      // document.querySelector(".quill-img input").click();
+      
+    },
+    avatarUploadSuccess(res, file){
+      
+      if (res.errorCode == 0) {
+        // 如果上传成功
+        console.log(res.data)
+        this.uploadAvatarUrl(res.data);
+      } else {
+        this.$message.error("上传头像失败");
+      }
+    },
+    uploadAvatarUrl(avatarUrl){
+      let msg = {
+        avatarUrl:avatarUrl,
+        userName:this.userInfo.userName
+      };
+      post()
     },
     /**********************文章************************/
     titleChange:function(){
@@ -181,7 +236,7 @@ export default {
       this.articleHtml = e.html
     },
     // 富文本图片上传前
-    quillImgBefore(file) {
+    uploadImgBefore(file) {
       let fileType = file.type;
    if(fileType === 'image/jpeg' || fileType === 'image/png'){
     return true;
@@ -210,6 +265,7 @@ export default {
       }
       
     },
+    
     // 富文本图片上传失败
     uploadError() {
       // loading动画消失
