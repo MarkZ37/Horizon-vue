@@ -59,6 +59,8 @@
       </div>
 
       <button class="show-deploy-button" @click="showDeploy()">写文章</button>
+      <!-- <i class="el-icon-edit show-deploy-button" @click="showDeploy()"></i> -->
+      <articleCard :articleList="articles"></articleCard>
       
   </div>
 
@@ -66,9 +68,10 @@
 
 <script>
   import $ from 'jquery';
-  // import store from "@/store";
   import {mapGetters} from 'vuex';
   import {post} from '@/utils/request.js';
+  import articleCard from './article/article.vue';
+  
 
   const toolbarOptions = [
   ["bold", "italic", "underline", "strike"],       // 加粗 斜体 下划线 删除线
@@ -96,6 +99,9 @@ export default {
       default: 4000 //kb
     },
   },
+  components:{
+    articleCard
+  },
   data() {
     return{
       nickName:'',
@@ -106,7 +112,7 @@ export default {
 
       articleHtml:'',
       articleTitle:'',
-      
+      articles:[],
       uploadImgUrl: "",
       editorOption: {
         placeholder: "",
@@ -142,18 +148,17 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['userInfo','token'])
+    ...mapGetters(['userInfo','token','articleData'])
   },
   mounted() {
     //设置上传图片的头部token
     this.myHeaders = {'Authorization': 'Bearer:' + this.token.token}
-    
-    console.log('load userinfo...')
     this.loadUserData();
+    this.loadUserArticles();
   },
   onbeforeunload() {
-    console.log('refresh userinfo...')
     this.loadUserData();
+    this.loadUserArticles()
   },
   methods: {
     /******************加载信息***************/
@@ -161,16 +166,15 @@ export default {
     //加载个人信息
     loadUserData:function(){
       let that = this;
-      console.log(that.userInfo.userName);
+      
       let msg = {
         userName: that.userInfo.userName
       }
       post(that.urlUtil.getUserInfo,msg).then(function(res){
-        console.log(res)
+        
         if(res.data.status == 0){
           that.$store.commit("setUserInfo",res.data.data);
-          console.log('userName:' + that.userInfo.userName + '  nickName:' + that.userInfo.nickName
-            + '  sign:' + that.userInfo.sign + '  avatarUrl:'+ that.userInfo.avatarUrl);
+          
           that.nickName = that.userInfo.nickName
           that.setAvatar(that.userInfo.avatarUrl);
         }
@@ -179,9 +183,23 @@ export default {
     setAvatar:function(avatarUrl){
       $('.avatar-con').css("background-image", "url("+avatarUrl+")")
     },
-    //加载用户文章
+    //加载、重新渲染用户文章列
     loadUserArticles:function(){
-      
+      let that = this;
+      let msg = {
+        userName: that.userInfo.userName
+      }
+      post(that.urlUtil.getUserArticle,msg).then(function(res){
+        console.log(res)
+        //成功获取文章
+        if(res.data.status == 0){
+          that.$store.commit("setArticleData",res.data.data);
+
+          // that.articleData = that.articleData.articleData
+          that.articles = that.articleData.articleData
+        }
+        
+      })
     },
     changeEmo:function(){
       $('.emos-con').slideDown(200);
@@ -264,7 +282,7 @@ export default {
       // 获取富文本组件实例
       let quill = this.$refs.quillEditor.quill;
       // 如果上传成功
-      console.log(res)
+      
       
       if (res.errorCode == 0) {
         // 获取光标所在位置
@@ -286,11 +304,27 @@ export default {
     },
     //上传文章
     deployArticle:function(){
-      if(this.articleTitle && this.articleHtml){
-        console.log(this.articleTitle+" "+this.articleHtml);
-        let data = {
-          
+      let that = this;
+      
+      if(that.articleTitle && that.articleHtml){
+        
+        let msg = {
+          title: that.articleTitle,
+          article: that.articleHtml,
+          userName: that.userInfo.userName
         }
+        post(that.urlUtil.deployArticle,msg).then(function(res){
+          console.log(res)
+          if(res.data.status == 0){
+            $('.deploy-con').slideUp(200);
+            that.$message.success('上传成功');
+            that.loadUserArticles();
+            that.articleTitle = '';
+            that.content = '';
+          }
+        })
+      }else{
+        that.$message.warning('标题或正文为空');
       }
     },
     //取消上传，关闭deploy

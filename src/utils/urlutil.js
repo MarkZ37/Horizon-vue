@@ -1,9 +1,15 @@
 const baseUrl = 'http://localhost:8080';
 const rootApi = '/api';
-const login = rootApi + '/user/weblogin';
-const regist = rootApi + '/user/webregist';
-const getUserInfo = rootApi + '/user/webgetuserinfo';
-const uploadAvatarUrl = rootApi + '/user/uploadavatarurl';
+const userApi = '/user';
+const articleApi = '/article';
+
+const login = rootApi + userApi + '/weblogin';
+const regist = rootApi + userApi + '/webregist';
+const getUserInfo = rootApi + userApi + '/webgetuserinfo';
+const uploadAvatarUrl = rootApi + userApi + '/uploadavatarurl';
+const deployArticle = rootApi + articleApi + '/webdeployarticle';
+const getUserArticle = rootApi + articleApi + '/webgetuserarticle';
+
 const imgOSSUpload = '/tool/oss/homeImageUpload';
 
 export default{
@@ -12,5 +18,7 @@ export default{
     regist,
     getUserInfo,
     uploadAvatarUrl,
+    deployArticle,
+    getUserArticle,
     imgOSSUpload
 }

@@ -69,8 +69,6 @@ export default {
             //登陆成功
             that.$store.commit("setToken",res.data.data.token)
             that.$store.commit("setUserInfo",res.data.data.userInfo)
-            
-            
             that.$router.push('/main/square')
           }else{
             that.$message.error(res.data.message);
