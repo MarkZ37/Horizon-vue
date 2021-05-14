@@ -12,7 +12,7 @@
             
         </el-card>
       </div>
-      <articleDetail class="article-detail"></articleDetail>
+      <articleDetail class="article-detail" :article="articleInfo"></articleDetail>
   </div>
 
 </template>
@@ -26,7 +26,7 @@ export default {
   props: ['articleList'],
   data() {
     return{
-        
+      articleInfo:[]
     }
 
   },
@@ -45,7 +45,8 @@ export default {
   },
   methods: {
     checkArticle:function(index){
-        console.log(this.articleList[index].id)
+        console.log(this.articleList[index].id);
+        this.articleInfo = this.articleList[index];
         $('.article-detail').slideDown(100)
     },
     timeFormat(dateTime){
