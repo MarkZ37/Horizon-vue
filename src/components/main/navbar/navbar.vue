@@ -50,6 +50,10 @@ export default {
 </script>
 
 <style>
-  
+  .el-menu-demo{
+    position: fixed;
+    width: 100%;
+    top: 0px;
+  }
   
 </style>

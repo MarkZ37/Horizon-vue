@@ -63,6 +63,9 @@ export default {
 </script>
 
 <style>
+  .main-page{
+    /* margin-top: 90px; */
+  }
   .starfield{
 	position:fixed;/*设置定位*/
 	top:0;

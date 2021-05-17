@@ -9,6 +9,7 @@ const getUserInfo = rootApi + userApi + '/webgetuserinfo';
 const uploadAvatarUrl = rootApi + userApi + '/uploadavatarurl';
 const deployArticle = rootApi + articleApi + '/webdeployarticle';
 const getUserArticle = rootApi + articleApi + '/webgetuserarticle';
+const getArticle = rootApi + articleApi + '/webgetarticle';
 
 const imgOSSUpload = '/tool/oss/homeImageUpload';
 
@@ -20,5 +21,6 @@ export default{
     uploadAvatarUrl,
     deployArticle,
     getUserArticle,
+    getArticle,
     imgOSSUpload
 }
