@@ -22,6 +22,7 @@
     class="starfield"
   >
   </vue-particles>
+  
   </div>
 
 </template>

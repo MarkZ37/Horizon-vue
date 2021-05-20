@@ -9,7 +9,7 @@
       <div class="title-con">{{article.title}}</div>
       <div class="author-con">
         <div class="author-avatar">
-          <img :src="article.avatarurl" alt="" class="author-img">
+          <img :src="article.avatarurl" alt="" class="author-img" @click="goToAuthorMain()">
         </div>
         {{article.nickname}}
       </div>
@@ -52,6 +52,15 @@ export default {
     closeDetail(){
         $('.article-detail-con').slideUp(200)
     },
+    goToAuthorMain:function(){
+      let that = this
+      that.$router.push({
+        name: 'UserMain',
+        params: {
+          userName: that.article.username
+        }
+      })
+    }
     
   },
   
@@ -66,10 +75,10 @@ export default {
     position: fixed;
     z-index: 1000;
     margin:auto;
-left:0;
-right:0;
-top:0;
-bottom:0;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
     width: 1050px;
     height: 625px;
     background-color: white;

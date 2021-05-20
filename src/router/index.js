@@ -9,7 +9,7 @@ import RegistSuccessful from '@/components/regist/successful.vue';
 import Square from '@/components/main/square/square.vue';
 import Follow from '@/components/main/follow/follow.vue';
 import My from '@/components/main/my/my.vue';
-
+import UserMain from '@/components/usermain/usermain.vue';
 Vue.use(Router)
 
 export default new Router({
@@ -53,6 +53,11 @@ export default new Router({
       name: 'RegistSuccessful',
       component: RegistSuccessful
     },
+    {
+      path: '/usermain',
+      name: 'UserMain',
+      component: UserMain
+    }
     
   ]
 })

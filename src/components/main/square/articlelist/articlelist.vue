@@ -7,7 +7,8 @@
                     <el-button style="float: right; padding: 1px 0" type="text" @click="checkArticle(index)">查看详情 ></el-button>
                 </div>
                 <div>
-                    <span>{{timeFormat(item.time)}}</span>
+                    <span class="article-info-tag">{{timeFormat(item.time)}}</span>
+                    <el-button type="text" @click="goToUserMain(index)" class="article-info-tag">{{item.nickname}}</el-button>
                 </div>
             
             </el-card>
@@ -21,7 +22,7 @@
 <script>
   import {datetimeFormat} from '@/utils/formatutil.js';
   import articleDetail from './detail.vue';
-
+  import $ from 'jquery'
 export default {
   name: 'ArticleList',
   props:['articleList'],
@@ -47,10 +48,24 @@ export default {
   methods: {
     checkArticle(index){
         console.log(this.articleList[index].id);
+        
         this.articleInfo = this.articleList[index];
+        $('.article-detail').slideDown(100)
     },
     timeFormat(dateTime){
       return datetimeFormat(dateTime,'yyyy-MM-dd HH:mm')
+    },
+    goToUserMain(index){
+      let that = this;
+      console.log(that.articleList[index].username)
+      
+      that.$router.push({
+          name: 'UserMain',
+          params: {
+            userName: that.articleList[index].username
+          }  
+        })
+        // that.$router.push('/usermain')
     }
   },
   
@@ -65,5 +80,8 @@ export default {
   }
   .article-item{
       margin: 10px auto;
+  }
+  .article-info-tag{
+    display: block;
   }
 </style>
