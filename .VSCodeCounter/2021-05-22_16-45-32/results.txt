@@ -1,0 +1,95 @@
+Date : 2021-05-22 16:45:32
+Directory : c:\Users\DELL\Desktop\Horizon-vue
+Total : 47 files,  14261 codes, 88 comments, 351 blanks, all 14700 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          2 |     11,960 |          0 |          2 |     11,962 |
+| Vue        |         15 |      1,265 |          0 |        205 |      1,470 |
+| JavaScript |         23 |        762 |         77 |        120 |        959 |
+| CSS        |          5 |        243 |         10 |         14 |        267 |
+| HTML       |          1 |         17 |          1 |          2 |         20 |
+| Markdown   |          1 |         14 |          0 |          8 |         22 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                     | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                        |         47 |     14,261 |         88 |        351 |     14,700 |
+| build                                                                                    |          7 |        451 |         40 |         56 |        547 |
+| config                                                                                   |          3 |         48 |         26 |         19 |         93 |
+| src                                                                                      |         32 |      1,764 |         19 |        262 |      2,045 |
+| src\assets                                                                               |          1 |         31 |          1 |          1 |         33 |
+| src\assets\style                                                                         |          1 |         31 |          1 |          1 |         33 |
+| src\components                                                                           |         18 |      1,427 |          9 |        209 |      1,645 |
+| src\components\main                                                                      |         11 |      1,038 |          5 |        151 |      1,194 |
+| src\components\main\follow                                                               |          1 |         19 |          0 |         10 |         29 |
+| src\components\main\my                                                                   |          4 |        602 |          4 |         71 |        677 |
+| src\components\main\my\article                                                           |          2 |        173 |          0 |         31 |        204 |
+| src\components\main\navbar                                                               |          1 |         51 |          0 |          9 |         60 |
+| src\components\main\square                                                               |          4 |        300 |          1 |         46 |        347 |
+| src\components\main\square\articlelist                                                   |          2 |        196 |          0 |         35 |        231 |
+| src\components\regist                                                                    |          4 |        136 |          1 |         22 |        159 |
+| src\components\usermain                                                                  |          2 |        169 |          3 |         26 |        198 |
+| src\router                                                                               |          1 |         58 |          0 |          6 |         64 |
+| src\store                                                                                |          7 |         90 |          0 |         23 |        113 |
+| src\store\moudles                                                                        |          5 |         60 |          0 |         18 |         78 |
+| src\utils                                                                                |          3 |         80 |          6 |          9 |         95 |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                 | language   | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\DELL\Desktop\Horizon-vue\.postcssrc.js                                          | JavaScript |          7 |          2 |          2 |         11 |
+| c:\Users\DELL\Desktop\Horizon-vue\README.md                                              | Markdown   |         14 |          0 |          8 |         22 |
+| c:\Users\DELL\Desktop\Horizon-vue\build\build.js                                         | JavaScript |         35 |          0 |          7 |         42 |
+| c:\Users\DELL\Desktop\Horizon-vue\build\check-versions.js                                | JavaScript |         45 |          0 |         10 |         55 |
+| c:\Users\DELL\Desktop\Horizon-vue\build\utils.js                                         | JavaScript |         80 |          5 |         17 |        102 |
+| c:\Users\DELL\Desktop\Horizon-vue\build\vue-loader.conf.js                               | JavaScript |         21 |          0 |          2 |         23 |
+| c:\Users\DELL\Desktop\Horizon-vue\build\webpack.base.conf.js                             | JavaScript |         74 |          4 |          5 |         83 |
+| c:\Users\DELL\Desktop\Horizon-vue\build\webpack.dev.conf.js                              | JavaScript |         82 |          7 |          7 |         96 |
+| c:\Users\DELL\Desktop\Horizon-vue\build\webpack.prod.conf.js                             | JavaScript |        114 |         24 |          8 |        146 |
+| c:\Users\DELL\Desktop\Horizon-vue\config\dev.env.js                                      | JavaScript |          7 |          0 |          2 |          9 |
+| c:\Users\DELL\Desktop\Horizon-vue\config\index.js                                        | JavaScript |         37 |         26 |         16 |         79 |
+| c:\Users\DELL\Desktop\Horizon-vue\config\prod.env.js                                     | JavaScript |          4 |          0 |          1 |          5 |
+| c:\Users\DELL\Desktop\Horizon-vue\index.html                                             | HTML       |         17 |          1 |          2 |         20 |
+| c:\Users\DELL\Desktop\Horizon-vue\package-lock.json                                      | JSON       |     11,890 |          0 |          1 |     11,891 |
+| c:\Users\DELL\Desktop\Horizon-vue\package.json                                           | JSON       |         70 |          0 |          1 |         71 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\App.vue                                            | Vue        |         50 |          0 |          9 |         59 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\assets\style\index.css                             | CSS        |         31 |          1 |          1 |         33 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\index.vue                               | Vue        |         84 |          0 |         10 |         94 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\main\follow\follow.vue                  | Vue        |         19 |          0 |         10 |         29 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\main\main.vue                           | Vue        |         66 |          0 |         15 |         81 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\main\my\article\article.vue             | Vue        |         58 |          0 |         12 |         70 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\main\my\article\detail.vue              | Vue        |        115 |          0 |         19 |        134 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\main\my\my.css                          | CSS        |        118 |          4 |          7 |        129 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\main\my\my.vue                          | Vue        |        311 |          0 |         33 |        344 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\main\navbar\navbar.vue                  | Vue        |         51 |          0 |          9 |         60 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\main\square\articlelist\articlelist.vue | Vue        |         72 |          0 |         16 |         88 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\main\square\articlelist\detail.vue      | Vue        |        124 |          0 |         19 |        143 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\main\square\square.css                  | CSS        |         45 |          1 |          1 |         47 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\main\square\square.vue                  | Vue        |         59 |          0 |         10 |         69 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\regist\failed.vue                       | Vue        |          0 |          0 |          1 |          1 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\regist\regist.css                       | CSS        |         16 |          1 |          1 |         18 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\regist\regist.vue                       | Vue        |         98 |          0 |         12 |        110 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\regist\successful.vue                   | Vue        |         22 |          0 |          8 |         30 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\usermain\usermain.css                   | CSS        |         33 |          3 |          4 |         40 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\components\usermain\usermain.vue                   | Vue        |        136 |          0 |         22 |        158 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\main.js                                            | JavaScript |         28 |          3 |          5 |         36 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\router\index.js                                    | JavaScript |         58 |          0 |          6 |         64 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\store\getters.js                                   | JavaScript |         10 |          0 |          1 |         11 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\store\index.js                                     | JavaScript |         20 |          0 |          4 |         24 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\store\moudles\article.js                           | JavaScript |          9 |          0 |          2 |         11 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\store\moudles\mainarticle.js                       | JavaScript |          9 |          0 |          2 |         11 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\store\moudles\otheruserinfo.js                     | JavaScript |         16 |          0 |          6 |         22 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\store\moudles\token.js                             | JavaScript |         10 |          0 |          2 |         12 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\store\moudles\userInfo.js                          | JavaScript |         16 |          0 |          6 |         22 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\utils\formatutil.js                                | JavaScript |         28 |          0 |          1 |         29 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\utils\request.js                                   | JavaScript |         20 |          6 |          3 |         29 |
+| c:\Users\DELL\Desktop\Horizon-vue\src\utils\urlutil.js                                   | JavaScript |         32 |          0 |          5 |         37 |
+| Total                                                                                    |            |     14,261 |         88 |        351 |     14,700 |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

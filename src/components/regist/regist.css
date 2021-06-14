@@ -1,10 +1,11 @@
 .regist-con{
+    display: block;
     width: 360px;
     height: 500px;
     padding: 20px;
     background-color: white;
     margin: 0 auto;
-    margin-top: 20px;
+    /* margin-top: 80px; */
     border-radius: 15px;
     background: rgba(255, 255, 255, .4);
     box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, .5);
@@ -15,4 +16,7 @@
             /*水平排布*/
             justify-content:space-between;
             
+}
+.el-form-item__label{
+    color: white;
 }

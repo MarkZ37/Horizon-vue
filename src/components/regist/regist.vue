@@ -1,5 +1,6 @@
 <template>
   <div class="page-con">
+    <CodeRain></CodeRain>
     <div class="regist-con">
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="login-ruleForm" size="medium" label-position="left">
         <el-form-item label="用户名" prop="username">
@@ -22,13 +23,16 @@
           
         </el-form-item>
       </el-form>
+      
     </div>
+    
   </div>
-
+  
 </template>
 
 <script>
   import {post} from '@/utils/request.js'
+  import CodeRain from '../coderain/coderain.vue'
 export default {
   name: 'Deploy',
   data() {
@@ -59,6 +63,9 @@ export default {
         }
     }
 
+  },
+  components: {
+    CodeRain
   },
   methods: {
     regist: function(){

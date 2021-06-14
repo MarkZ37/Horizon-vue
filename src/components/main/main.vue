@@ -23,12 +23,14 @@
   >
   </vue-particles>
   
+  
   </div>
 
 </template>
 
 <script>
   import Navbar from "./navbar/navbar"
+  
 export default {
   name: 'Main',
   data() {
@@ -49,7 +51,8 @@ export default {
       
   },
   components: {
-    "v-navbar": Navbar
+    "v-navbar": Navbar,
+    
   },
   watch: {
     active (newVal){

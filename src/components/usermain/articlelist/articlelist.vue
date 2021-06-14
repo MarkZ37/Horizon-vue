@@ -27,7 +27,7 @@
   import {post} from '@/utils/request.js';
   import {mapGetters} from 'vuex';
 export default {
-  name: 'Article',
+  name: 'ArticleList',
   props: ['articleList'],
   data() {
     return{

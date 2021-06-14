@@ -1,11 +1,13 @@
 const state = {
-    mainArticle: []
+    mainArticle: [],
+    
 }
 
 const mutations = {
-    setMainArticle(state,articles){
+    setMainArticle(state,pageInfo){
         
-        state.mainArticle = articles;
+        state.mainArticle = pageInfo;
+        
     }
 }
 export default { state, mutations };

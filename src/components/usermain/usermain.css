@@ -1,0 +1,40 @@
+.user-info-con{
+    width: 100%;
+}
+
+.avatar{
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    margin: 0 auto;
+    background-color: pink;
+    background-size: 100% 100%;
+}
+.avatar:hover{
+    /* cursor: pointer; */
+    
+    /* transform: scale(1.4); */
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: 1s;
+    -webkit-animation: rotate 3s linear infinite;
+    -moz-animation: rotate 3s linear infinite;
+    -o-animation: rotate 3s linear infinite;
+    animation: rotate 3s linear infinite;
+}
+.nickname-con{
+    text-align: center;
+    color: black;
+    font-size: 40px;
+}
+.follow-btn-con{
+    
+    
+}
+.follow-btn{
+    margin: 0 auto;
+    display: block;
+    width: 100px;
+    /* text-align: center; */
+}

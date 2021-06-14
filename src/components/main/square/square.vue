@@ -32,31 +32,31 @@ export default {
     articleList
   },
   mounted() {
-    this.loadArticle();
+    // this.loadArticle();
   },
   onbeforeunload(){
-    this.loadArticle();
+    // this.loadArticle();
   },
   methods: {
-    loadArticle:function(){
+    // loadArticle:function(){
       
-      let that = this;
+    //   let that = this;
       
-      let msg = {
-        userName: that.userInfo.userName
-      }
-      post(that.urlUtil.getArticle,msg).then(function(res){
-        console.log(res.data.data)
-        if(res.data.status == 0){
-          that.$store.commit('setMainArticle',res.data.data)
-          that.setArticle(res.data.data)
-        }
-      })
-    },
-    setArticle:function(articles){
-      let that = this;
-      that.mainArticleInfo = articles
-    }
+    //   let msg = {
+    //     userName: that.userInfo.userName
+    //   }
+    //   post(that.urlUtil.getArticle,msg).then(function(res){
+    //     console.log(res.data.data)
+    //     if(res.data.status == 0){
+    //       that.$store.commit('setMainArticle',res.data.data)
+    //       that.setArticle(res.data.data.list)
+    //     }
+    //   })
+    // },
+    // setArticle:function(articles){
+    //   let that = this;
+    //   that.mainArticleInfo = articles
+    // }
   },
   
 }

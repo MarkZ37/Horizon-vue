@@ -15,24 +15,11 @@
           </el-upload>
           <div class="nickName">{{nickName}}</div>
       </div>
-      <div class="emo-con">
-        <el-button type="primary" round @click="changeEmo()">{{emo}}</el-button>
-        <div class="emos-con">心情盒子
-          <ul class="emos-list">
-            <li v-for="(item,i) in emoList">
-              <button class="emos-item" @click="chooseEmo(i)">{{item}}</button>
-            </li>
-          </ul>
-          <div class="close-emos">
-            <el-button type="primary" round plain class="emos-sure" @click="sureEmos()">确认</el-button>
-            <el-button type="danger" round plain class="emos-cancel" @click="closeEmos()">取消</el-button>
-          </div>
-        </div>
-      </div>
+      
       
       <!-- 富文本编辑器 -->
       <div class="deploy-con">
-        <el-input v-model="articleTitle" placeholder="标题" :change="titleChange()"></el-input>
+        <el-input v-model="articleTitle" placeholder="标题" :change="titleChange()" class="title-input"></el-input>
         <el-upload
         class="quill-img"
         :action="uploadImgUrl"
@@ -58,6 +45,9 @@
         </div>
       </div>
 
+      <div>
+        <el-button type="primary" round @click="logout()" class="logout-button">退出登陆</el-button>
+      </div>
       <button class="show-deploy-button" @click="showDeploy()">写文章</button>
       <!-- <i class="el-icon-edit show-deploy-button" @click="showDeploy()"></i> -->
       <articleCard :articleList="articles"></articleCard>
@@ -105,9 +95,7 @@ export default {
   data() {
     return{
       nickName:'',
-      emo: '此时心情',
-      emoList: ["心情1","心情2","心情3","心情4","心情5","心情6","心情7","心情8","心情9","心情10",
-      "心情1","心情2","心情3","心情4","心情5","心情6","心情7","心情8","心情9","心情10","心情11"],
+
       content: this.value,
 
       articleHtml:'',
@@ -152,7 +140,8 @@ export default {
   },
   mounted() {
     //设置上传图片的头部token
-    this.myHeaders = {'Authorization': 'Bearer:' + this.token.token}
+    
+    this.myHeaders = {'Authorization': this.token}
     this.loadUserData();
     this.loadUserArticles();
   },
@@ -201,25 +190,8 @@ export default {
         
       })
     },
-    changeEmo:function(){
-      $('.emos-con').slideDown(200);
-    },
-    sureEmos:function(){
-      if(localStorage.getItem("emosIndex") != null){
-        console.log("心情选择了："+localStorage.getItem("emosIndex"));
-        this.emo = this.emoList[localStorage.getItem("emosIndex")]
-      }else{
-        console.log("无心情选择");
-      }
-      $('.emos-con').slideUp(200);
-    },
-    closeEmos:function(){
-      $('.emos-con').slideUp(200);
-    },
-    chooseEmo:function(index){
-      localStorage.setItem("emosIndex",index)
-      console.log(index)
-    },
+    
+    
     /**********************上传头像*********************/
     changeAvatar:function(){
       $('.avatar-uploader input').click()
@@ -330,6 +302,13 @@ export default {
     //取消上传，关闭deploy
     cancelDeploy:function(){
       $('.deploy-con').slideUp(200);
+    },
+
+    //退出登陆
+    logout:function(){
+      console.log('退出');
+      localStorage.clear();
+      this.$router.replace('/')
     }
   },
   
@@ -337,7 +316,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
   @import url("my.css");
   
 </style>

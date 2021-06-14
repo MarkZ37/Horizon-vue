@@ -1,0 +1,48 @@
+.follow-list-con{
+    width: 80%;
+    margin: 0 auto;  
+    margin-top: 70px;
+
+}
+.el-header {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    font-size: 30px;
+    line-height: 60px;
+  }
+  
+  .el-aside {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    text-align: center;
+    height: 650px;
+  }
+  
+  .el-main {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    
+    height: 650px;
+  }
+  body > .el-container {
+    
+    margin-bottom: 40px;
+  }
+  .user-list-item{
+    height: 60px;
+    width: 100%;
+    line-height: 60px;
+    border: 1px solid rgba(12, 243, 243, 0.5);
+  }
+  .user-list-item:hover{
+    cursor: pointer;
+    background-color: #409EFF;
+  }
+  .userActive{
+    height: 60px;
+    width: 100%;
+    line-height: 60px;
+    background-color: #409EFF;
+  }
+  

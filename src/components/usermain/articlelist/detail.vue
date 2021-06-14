@@ -9,7 +9,7 @@
       <div class="title-con">{{article.title}}</div>
       <div class="author-con">
         <div class="author-avatar">
-          <img :src="article.avatarurl" alt="" class="author-img" @click="goToAuthorMain()">
+          <img :src="article.avatarurl" alt="" class="author-img">
         </div>
         {{article.nickname}}
       </div>
@@ -18,22 +18,22 @@
       <el-divider></el-divider>
       <div class="article-con ql-snow ql-editor" v-html="article.article"></div>
       <el-divider></el-divider>
-      <div class="support-btn-con">
-        <div class="support-con">
-          <div v-if="supportStatus.supportFlag">
-            <el-button type="info" @click="cancelSupport()">取消赞</el-button>
-          </div>
-          <div v-else>
-            <el-button type="success" round @click="dealSupport()">赞</el-button>
-          </div>
+    </div>
+    <div class="support-btn-con">
+      <div class="support-con">
+        <div v-if="supportStatus.supportFlag">
+          <el-button type="info" @click="cancelSupport()">取消赞</el-button>
         </div>
-        <div class="dislike-con">
-          <div v-if="supportStatus.dislikeFlag">
-            <el-button type="info" @click="cancelDislike()">取消踩</el-button>
-          </div>
-          <div v-else>
-            <el-button type="danger" round @click="dealDislike()">踩</el-button>
-          </div>
+        <div v-else>
+          <el-button type="success" round @click="dealSupport()">赞</el-button>
+        </div>
+      </div>
+      <div class="dislike-con">
+        <div v-if="supportStatus.dislikeFlag">
+          <el-button type="info" @click="cancelDislike()">取消踩</el-button>
+        </div>
+        <div v-else>
+          <el-button type="danger" round @click="dealDislike()">踩</el-button>
         </div>
       </div>
     </div>
@@ -73,16 +73,6 @@
       closeDetail() {
         $('.article-detail-con').slideUp(200)
       },
-      goToAuthorMain: function () {
-        let that = this
-        that.$router.push({
-          name: 'UserMain',
-          params: {
-            userName: that.article.username
-          }
-        })
-      },
-
       //点赞
       dealSupport: function () {
         let that = this;

@@ -3,7 +3,7 @@ const getters = {
     otherUserInfo : state => state.otherUserInfo,
     userName : state => state.userInfo.userName,
     otherUserName : state => state.otherUserInfo.userName,
-    token : state => state.token,
+    token : state => state.token.token,
     articleData : state => state.articleData,
     mainArticle : state => state.mainArticle
 }
