@@ -51,12 +51,12 @@ export default {
   methods: {
     loadFollowUserList(){
       let that = this;
-      console.log(that.userInfo.userName)
+      
       let msg = {
         userName : that.userInfo.userName
       }
       post(that.urlUtil.getUserFollowList,msg).then(function(res){
-        console.log(res)
+        
         if(res.data.status == 0){
           that.followList = res.data.data;
           that.loadUserArticle();
@@ -65,19 +65,19 @@ export default {
       
     },
     chooseUser(index){
-      console.log(index)
+      
       let that = this;
       that.isUserActive = index;
       that.loadUserArticle();
     },
     loadUserArticle(){
       let that = this;
-      console.log(that.followList)
+      
       let msg = {
         userName : that.followList[that.isUserActive].flUserName
       }
       post(that.urlUtil.getUserArticle,msg).then(function(res){
-        console.log(res)
+        
         that.articles = res.data.data;
       })
     }

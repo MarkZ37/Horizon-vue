@@ -24,11 +24,14 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(response => {
   console.log('拦截器');
   console.log(response)
+  if(response.data.refreshToken != "null"){
+    setLocalToken(response.data.refreshToken)
+  }
   return response;
 },error => {
   return Promise.reject(error);
 });
-//定义方法
+//定义请求方法
 export function post(url, params) {
 
   return axios.post(url, params); //如果不需要转json的话，那么第二次参数就是params
@@ -36,4 +39,11 @@ export function post(url, params) {
 export function get(url, params) {
   let basePath = process.env.NODE_ENV == "development" ? "/api/mall" : "/mall";
   return axios.get(basePath + url, { params });
+}
+
+//常规业务方法
+function setLocalToken(newToken){
+  console.log('enter set token')
+  console.log(newToken)
+  localStorage.setItem('token',newToken);
 }

@@ -179,7 +179,7 @@ export default {
         userName: that.userInfo.userName
       }
       post(that.urlUtil.getUserArticle,msg).then(function(res){
-        console.log(res)
+        
         //成功获取文章
         if(res.data.status == 0){
           that.$store.commit("setArticleData",res.data.data);
@@ -201,7 +201,7 @@ export default {
       
       if (res.errorCode == 0) {
         // 如果上传成功
-        console.log(res.data)
+        
         this.uploadAvatarUrl(res.data);
       } else {
         this.$message.error("上传头像失败");
@@ -214,7 +214,7 @@ export default {
         userName:this.userInfo.userName
       };
       post(that.urlUtil.uploadAvatarUrl,msg).then(function(res){
-        console.log(res)
+        
         if(res.data.status == 0){
           //成功上传头像，获取更新后的userInfo
           that.loadUserData();
@@ -223,19 +223,19 @@ export default {
     },
     /**********************文章************************/
     titleChange:function(){
-      console.log(this.articleTitle)
+      
     },
     showDeploy:function(){
       $('.deploy-con').slideDown(200)
     },
     handleEditorBlur:function(e){
-      console.log(e)
+      
     },
     handleEditorFocus:function(e){
-      console.log(e)
+      
     },
     handleEditorChange:function(e){
-      console.log(e.html)
+      
       this.articleHtml = e.html
     },
     // 富文本图片上传前
@@ -286,7 +286,7 @@ export default {
           userName: that.userInfo.userName
         }
         post(that.urlUtil.deployArticle,msg).then(function(res){
-          console.log(res)
+          
           if(res.data.status == 0){
             $('.deploy-con').slideUp(200);
             that.$message.success('上传成功');
@@ -306,7 +306,7 @@ export default {
 
     //退出登陆
     logout:function(){
-      console.log('退出');
+      
       localStorage.clear();
       this.$router.replace('/')
     }

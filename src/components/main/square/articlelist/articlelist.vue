@@ -67,14 +67,14 @@ export default {
   methods: {
     checkArticle(index){
       let that = this;
-      console.log(this.articleList[index].id);
+      
       let msg = {
         
         userName : that.userInfo.userName,
         articleId : that.articleList[index].id
       };
       post(that.urlUtil.webGetSupportStatus,msg).then(function(res){
-        console.log(res);
+        
         if(res.data.status == 0){
           if(res.data.data == null){
             that.supportInfo = {
@@ -114,7 +114,7 @@ export default {
 
     },
     loadArticle(){
-      console.log('加载更多');
+      
       let that = this;
       
       
@@ -124,7 +124,7 @@ export default {
         pageNum : that.pageNum
       }
         post(that.urlUtil.getArticle,msg).then(function(res){
-        console.log(res.data.data)
+        
         if(res.data.status == 0){
           that.isLastPage = res.data.data.isLastPage;
           that.articleList = that.articleList.concat(res.data.data.list);

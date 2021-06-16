@@ -53,14 +53,14 @@
       checkArticle:function(index){
           
         let that = this;
-      console.log(this.articleList[index].id);
+      
       let msg = {
         
         userName : that.userInfo.userName,
         articleId : that.articleList[index].id
       };
       post(that.urlUtil.webGetSupportStatus,msg).then(function(res){
-        console.log(res);
+        
         if(res.data.status == 0){
           if(res.data.data == null){
             that.supportInfo = {
