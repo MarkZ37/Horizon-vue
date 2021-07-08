@@ -1,5 +1,6 @@
 <template>
     <div>
+      <CodeRain></CodeRain>
       <div class="user-info-con">
         <div class="avatar-con">
           <div class="avatar"></div>
@@ -26,6 +27,7 @@
   import {post} from '@/utils/request.js';
   import {datetimeFormat} from '@/utils/formatutil.js'
   import articleCard from './articlelist/articlelist.vue'
+  import CodeRain from '../coderain/coderain.vue'
 
 export default {
   name: 'UserMain',
@@ -52,7 +54,8 @@ export default {
     
   },
   components:{
-    articleCard
+    articleCard,
+    CodeRain
   },
   methods: {
     timeFormat(dateTime){

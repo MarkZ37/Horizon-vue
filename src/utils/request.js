@@ -22,8 +22,7 @@ axios.interceptors.request.use(config => {
 
 //响应拦截器
 axios.interceptors.response.use(response => {
-  console.log('拦截器');
-  console.log(response)
+  
   if(response.data.refreshToken != "null"){
     setLocalToken(response.data.refreshToken)
   }
@@ -43,7 +42,6 @@ export function get(url, params) {
 
 //常规业务方法
 function setLocalToken(newToken){
-  console.log('enter set token')
-  console.log(newToken)
+
   localStorage.setItem('token',newToken);
 }

@@ -64,7 +64,7 @@ export default {
           password:this.ruleForm.password
         }
         post(that.urlUtil.login,msg).then(function(res){
-          console.log(res)
+          
           if(res.data.status == 0){
             //登陆成功
             that.$store.commit("setToken",res.data.data.token)
